@@ -13,8 +13,11 @@ const MainPage = () => {
   const isLogged = useSelector((state) => state.user.isLogged);
 
   const dispatch = useDispatch();
-
-  const onRegHandler = () => {
+// 
+//   https://api.publicapis.org/entries
+//   
+// 
+const onRegHandler = () => {
     dispatch(userAction.formSwitch());
     //   setOnLoginPage((prevstat) => !prevstat);
   };
