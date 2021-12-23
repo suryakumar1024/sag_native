@@ -11,18 +11,20 @@ import styles from "./InputFormStyle";
 import { StatusBar } from "expo-status-bar";
 import { useDispatch } from "react-redux";
 import { userAction } from "./store/store";
+import { useNavigate } from "react-router-native";
 
 
-const InputForm = (props) => {
+const LoginForm = (props) => {
 const [name,setName]= useState('');
 const [password,setPassword]= useState('');
+const navigate= useNavigate();
 
 const dispatch= useDispatch();
 const loginHandler=()=>{
   dispatch(userAction.onLogin({name,password}))
   
 }
-// console.log(name);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -55,7 +57,7 @@ const loginHandler=()=>{
 
       <View style={styles.regPara}>
         <Text style={styles.para}>dont have an accout? </Text>
-        <TouchableOpacity onPress={props.onReg}>
+        <TouchableOpacity onPress={()=>navigate('/register')}>
           <Text style={styles.para}>Register here</Text>
         </TouchableOpacity>
       </View>
@@ -63,4 +65,4 @@ const loginHandler=()=>{
   );
 };
 
-export default InputForm;
+export default LoginForm;

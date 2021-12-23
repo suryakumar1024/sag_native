@@ -3,8 +3,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const userIntial = {
   userName: "",
   password: "",
-  isLogged: false,
-  onLogin: true,
+  isLogged: false
+  
 };
 
 const userSlice = createSlice({
@@ -19,10 +19,8 @@ const userSlice = createSlice({
     },
     onLogout(state) {
       state.isLogged = false;
-    },
-    formSwitch(state) {
-      state.onLogin = !state.onLogin;
-    },
+    }
+   
   },
 });
 

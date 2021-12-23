@@ -1,32 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
-import InputForm from "./InputForm";
 import RegisterForm from "./RegisterForm";
 import { StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { userAction } from "./store/store";
+import { useSelector } from "react-redux";
 import LoggedInPage from "./LoggedInPage";
+import { Route, Routes } from "react-router-native";
+import LoginForm from "./LoginForm";
 
 const MainPage = () => {
-  const [onLoginPage, setOnLoginPage] = useState(true);
-  const onLogin = useSelector((state) => state.user.onLogin);
   const isLogged = useSelector((state) => state.user.isLogged);
-
-  const dispatch = useDispatch();
-// 
-//   https://api.publicapis.org/entries
-//   
-// 
-const onRegHandler = () => {
-    dispatch(userAction.formSwitch());
-    //   setOnLoginPage((prevstat) => !prevstat);
-  };
+  //
+  //   https://api.publicapis.org/entries
+  //
+  //
   return (
     <View style={styles.container}>
-      {isLogged && <LoggedInPage />}
+      {!isLogged && (
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="register" element={<RegisterForm />} />
+        </Routes>
+      )}
 
-      {!isLogged && onLogin && <InputForm onReg={onRegHandler} />}
-      {!isLogged && !onLogin && <RegisterForm onLog={onRegHandler} />}
+      {isLogged && <LoggedInPage />}
     </View>
   );
 };

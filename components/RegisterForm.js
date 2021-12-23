@@ -8,8 +8,11 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { useNavigate } from "react-router-native";
 import styles from "./InputFormStyle";
 const RegisterForm = (props) => {
+const navigate= useNavigate();
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -44,7 +47,7 @@ const RegisterForm = (props) => {
 
       <View style={styles.regPara}>
         <Text style={styles.para}>already have an accout? </Text>
-        <TouchableOpacity onPress={props.onLog}>
+        <TouchableOpacity onPress={()=>navigate('/')}>
           <Text style={styles.para}>login here</Text>
         </TouchableOpacity>
       </View>
