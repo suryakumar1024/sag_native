@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Button, Linking, SafeAreaView, Text, View } from "react-native";
+import React from "react";
+import axios from "axios";
+import { Button, SafeAreaView, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "./store/store";
-import axios from "axios";
-import { ScrollView } from "react-native-web";
+import { useNavigate } from "react-router-native";
+import { useEffect } from "react";
 
 // to get new token
 // https://developer.spotify.com/console/get-playlist/
 
 const accessToken =
-  "BQBEAwN0w0aoQck-5BHpGbMgI7CKBvMO9vZMIafrBvyClTNUffHd1XpxpUnRU7mIEbUrGuJHHk52lmmlXDNNqr_8OnmGYmqzi4qmmjZlxgRc0s9COEyPVVH7Nc3LKRhiyv97WYQqqYPL6fYhQTweg2pRt8h8tq7sxxk";
+  "BQDTDFGEkC_ApijPaM7uLnTXcvc500ViUKTiuVG354exRa-bljFZauuRxPB7C3luhwOZkzUPLtKXesJnj-j69kqokPwhD8RH3db7oaZlPhwbaNcgLadFLHlON6sVd7r-Hd4ZJkuAo8VVSLpaVtOIpt2xQo7NbzWfQec";
 
 const LoggedInPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [change, setChange] = useState(0);
   const name = useSelector((state) => state.user.userName);
   const password = useSelector((state) => state.user.password);
-  const songs = useSelector((state) => state.user.songs);
-  const showSong = useSelector((state) => state.user.showSong);
 
-  const song = songs.map((song) => {
-    return {
-      id: song.track.id,
-      name: song.track.name,
-      prevUrl: song.track.preview_url,
-      songUrl: song.track.external_urls.spotify,
-    };
-  });
   useEffect(() => {
     axios
       .get("https://api.spotify.com/v1/playlists/3vTVQzTLZEgGpqGuVucPkB", {
@@ -39,16 +30,18 @@ const LoggedInPage = () => {
         dispatch(userAction.getSongs(tracks));
       })
       .catch((err) => console.log(err));
-    console.log("fetch req sent");
+    console.log("fetch");
+    
   }, [dispatch]);
 
   const showSongs = () => {
-    dispatch(userAction.showSong());
+    navigate("/songs");
   };
 
   const logoutHandler = () => {
-    dispatch(userAction.onLogout());
+    navigate("/");
   };
+  
   return (
     <SafeAreaView>
       <View>
@@ -57,16 +50,6 @@ const LoggedInPage = () => {
         <Button onPress={logoutHandler} title="logout" />
         <Button onPress={showSongs} title="songs" />
       </View>
-      {showSong && (
-        <View>
-          <Text>{song[change].name}</Text>
-          <Text onPress={() => Linking.openURL(song[change].prevUrl)}>
-            prev
-          </Text>
-          <Button onPress={() => setChange(change - 1)} title="prev" />
-          <Button onPress={() => setChange(change + 1)} title="next" />
-        </View>
-      )}
     </SafeAreaView>
   );
 };

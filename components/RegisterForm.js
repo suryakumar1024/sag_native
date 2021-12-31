@@ -47,7 +47,7 @@ const navigate= useNavigate();
 
       <View style={styles.regPara}>
         <Text style={styles.para}>already have an accout? </Text>
-        <TouchableOpacity onPress={()=>navigate('/')}>
+        <TouchableOpacity onPress={()=>navigate('/login')}>
           <Text style={styles.para}>login here</Text>
         </TouchableOpacity>
       </View>

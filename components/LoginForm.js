@@ -11,7 +11,7 @@ import styles from "./InputFormStyle";
 import { StatusBar } from "expo-status-bar";
 import { useDispatch } from "react-redux";
 import { userAction } from "./store/store";
-import { useNavigate } from "react-router-native";
+import { Link, useNavigate } from "react-router-native";
 
 
 const LoginForm = (props) => {
@@ -22,7 +22,7 @@ const navigate= useNavigate();
 const dispatch= useDispatch();
 const loginHandler=()=>{
   dispatch(userAction.onLogin({name,password}))
-  
+  navigate('/welcome');
 }
 
   return (
@@ -47,12 +47,14 @@ const loginHandler=()=>{
           onChangeText={(e)=>setPassword(e)}
 
         />
+        
         <Button
           style={styles.button}
           color={"#66BDD5"}
           title={"login"}
           onPress={loginHandler}
-        ></Button>
+          />
+          
       </View>
 
       <View style={styles.regPara}>
