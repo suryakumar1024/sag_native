@@ -10,8 +10,7 @@ import { useEffect } from "react";
 // https://developer.spotify.com/console/get-playlist/
 
 const accessToken =
-  "BQDTDFGEkC_ApijPaM7uLnTXcvc500ViUKTiuVG354exRa-bljFZauuRxPB7C3luhwOZkzUPLtKXesJnj-j69kqokPwhD8RH3db7oaZlPhwbaNcgLadFLHlON6sVd7r-Hd4ZJkuAo8VVSLpaVtOIpt2xQo7NbzWfQec";
-
+  "BQBcn9x7DL-JdPuYhvRPA0laBspE2j7tSBPVkbwRtNHn3811CAN73crGz4SsCKek8pjuIXTZcGF_PkMXJLE9Hn2AFOloSfaGpKlPMjq5d5GhGZquumQfMsofmw_ioZLRD04h5t00KLq15RgsHjCWLmAlrjeQn3KI8mg";
 const LoggedInPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

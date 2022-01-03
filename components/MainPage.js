@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import LoggedInPage from "./LoggedInPage";
 import { Navigate, Route, Routes } from "react-router-native";
 import LoginForm from "./LoginForm";
-import Songs from "./MusicPlayer";
+import Songs from "./player/MusicPlayer";
 
 const MainPage = () => {
   const isLogged = useSelector((state) => state.user.isLogged);
