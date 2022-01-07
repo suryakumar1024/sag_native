@@ -1,27 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import {
-  View,
-  Text,
-  Button,
-  Linking,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import { useNavigate } from "react-router-native";
 import style from "./musicPlayerStyle";
-import {
-  Feather,
-  AntDesign,
-  MaterialCommunityIcons,
-  Fontisto,
-  Ionicons,
-} from "@expo/vector-icons";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import AudioControls from "./AudioControls";
 
 const Songs = () => {
-  const [change, setChange] = useState(0);
   const songs = useSelector((state) => state.user.songs);
   const navigate = useNavigate();
+
   const song = songs.map((song) => {
     return {
       id: song.track.id,
@@ -31,22 +19,9 @@ const Songs = () => {
     };
   });
 
-  const prevHandler = () => {
-    if (change === 0) {
-      setChange(song.length - 1);
-    } else {
-      setChange(change - 1);
-    }
-  };
-  const nextHandler = () => {
-    if (change === song.length - 1) {
-      setChange(0);
-    } else {
-      setChange(change + 1);
-    }
-  };
   const returnHome = () => {
     navigate("/");
+
   };
 
   return (
@@ -66,34 +41,11 @@ const Songs = () => {
             color="black"
           />
         </View>
-        <View style={style.songNameBox} >
 
-        <Text style={style.songName} >{song[change].name}</Text>
-        </View>
-        <View style={style.audioControl}>
-          <Ionicons
-            onPress={prevHandler}
-            name="play-back-outline"
-            size={54}
-            color="black"
-          />
-          <Feather
-          style={style.play}
-            onPress={() => Linking.openURL(song[change].prevUrl)}
-            name="play"
-            size={54}
-            color="black"
-          />
-          <Ionicons
-            onPress={nextHandler}
-            name="play-forward-outline"
-            size={54}
-            color="black"
-          />
-        </View>
+        <AudioControls song={song} />
       </View>
     </SafeAreaView>
   );
 };
-
+export const song = Songs.song;
 export default Songs;

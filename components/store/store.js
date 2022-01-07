@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+
 const userIntial = {
   userName: "",
   password: "",
@@ -18,7 +19,6 @@ const userSlice = createSlice({
     getSongs(state, action) {
       state.songs = action.payload;
     },
-    
   },
 });
 
