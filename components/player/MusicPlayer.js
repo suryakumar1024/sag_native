@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useNavigate } from "react-router-native";
 import style from "./musicPlayerStyle";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -21,9 +27,9 @@ const Songs = () => {
 
   const returnHome = () => {
     navigate("/");
-
   };
 
+ 
   return (
     <SafeAreaView style={style.container}>
       <View style={style.innerContainer}>
