@@ -43,18 +43,14 @@ const LoggedInPage = () => {
       const media = await MediaLibrary.getAssetsAsync({
         mediaType: "audio",
       });
-      // console.log(media.assets);
       const audio = media.assets;
       dispatch(userAction.getLocalAudio(audio));
-      //  const file =media.assets.filter(file=>{
-      //     ['mp3'].includes(file.split('.').pop())
-      //   })
-      //   console.log(file);
+
     }
     if (!permission.granted && permission.canAskAgain) {
       // get permission
 
-      Alert.alert("permission required", "allow permission to continue", [
+      Alert.alert("Permission required", "allow permission to continue", [
         {
           text: "ok",
           onPress: () => {
@@ -71,6 +67,7 @@ const LoggedInPage = () => {
     }
     if (!permission.granted && !permission.canAskAgain) {
       console.log("denied");
+      Alert.alert('Denied permission','open settings and allow storage permission to continue',[{text:'ok' ,onPress:()=>navigate('/')}])
     }
   };
 
@@ -97,23 +94,24 @@ const LoggedInPage = () => {
   const logoutHandler = () => {
     navigate("/");
   };
-  // console.log(localSongs.filename.split('.').pop());
-  // console.log(localSongs.filter(e=>e.endsWith('mp3')));
+  let onlyMp3 = localSongs.filter((file) =>
+    ["mp3"].includes(file.filename.split(".").pop())
+  );
   return (
     <Fragment>
-    <View>
+      <View>
         <Text>{name}</Text>
         <Text>{password}</Text>
         <Button onPress={logoutHandler} title="logout" />
         <Button onPress={showSongs} title="songs" />
       </View>
-        <ScrollView>
-      {localSongs.map((e) => (
-        <Text style={style.audio} key={e.id}>
-          {e.filename}
-        </Text>
-      ))}
-    </ScrollView>
+      <ScrollView>
+        {onlyMp3.map((e) => (
+          <Text style={style.audio} key={e.id}>
+            {e.filename}
+          </Text>
+        ))}
+      </ScrollView>
     </Fragment>
   );
 };
@@ -121,7 +119,7 @@ const LoggedInPage = () => {
 const style = StyleSheet.create({
   audio: {
     padding: 5,
-    fontSize:22
+    fontSize: 20,
   },
 });
 
