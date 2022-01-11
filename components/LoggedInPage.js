@@ -1,19 +1,13 @@
 import React, { Fragment } from "react";
 import axios from "axios";
-import {
-  Button,
-  Text,
-  View,
-  Alert,
-  ScrollView,
-  StyleSheet,
-  FlatList,
-} from "react-native";
+import { Button, Text, View, Alert, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "./store/store";
 import { useNavigate } from "react-router-native";
 import { useEffect } from "react";
 import * as MediaLibrary from "expo-media-library";
+import LocalPlayer from "./localSongsPlayer/LocalPlayer";
+import SearchBox from "./localSongsPlayer/SearchBox";
 
 // to get new token
 // https://developer.spotify.com/console/get-playlist/
@@ -30,25 +24,19 @@ const LoggedInPage = () => {
 
   const getPermission = async () => {
     const permission = await MediaLibrary.getPermissionsAsync();
-    console.log(permission);
-
-    // Object {
-    //   "canAskAgain": true,
-    //   "expires": "never",
-    //   "granted": true,
-    //   "status": "granted",
-    // }
 
     if (permission.granted) {
+      ///   got permission
+
       const media = await MediaLibrary.getAssetsAsync({
         mediaType: "audio",
       });
       const audio = media.assets;
       dispatch(userAction.getLocalAudio(audio));
-
     }
+
     if (!permission.granted && permission.canAskAgain) {
-      // get permission
+      //   get permission
 
       Alert.alert("Permission required", "allow permission to continue", [
         {
@@ -66,8 +54,13 @@ const LoggedInPage = () => {
       ]);
     }
     if (!permission.granted && !permission.canAskAgain) {
-      console.log("denied");
-      Alert.alert('Denied permission','open settings and allow storage permission to continue',[{text:'ok' ,onPress:()=>navigate('/')}])
+      ///   have to change permission manually
+
+      Alert.alert(
+        "Denied permission",
+        "open settings and allow storage permission to continue",
+        [{ text: "ok", onPress: () => navigate("/") }]
+      );
     }
   };
 
@@ -97,30 +90,20 @@ const LoggedInPage = () => {
   let onlyMp3 = localSongs.filter((file) =>
     ["mp3"].includes(file.filename.split(".").pop())
   );
+
+  // console.log(onlyMp3);
   return (
     <Fragment>
       <View>
         <Text>{name}</Text>
         <Text>{password}</Text>
         <Button onPress={logoutHandler} title="logout" />
-        <Button onPress={showSongs} title="songs" />
+        <Button disabled={true} onPress={showSongs} title="songs" />
+        <SearchBox allSongs={onlyMp3} />
       </View>
-      <ScrollView>
-        {onlyMp3.map((e) => (
-          <Text style={style.audio} key={e.id}>
-            {e.filename}
-          </Text>
-        ))}
-      </ScrollView>
+      <LocalPlayer songs={onlyMp3} />
     </Fragment>
   );
 };
-
-const style = StyleSheet.create({
-  audio: {
-    padding: 5,
-    fontSize: 20,
-  },
-});
 
 export default LoggedInPage;

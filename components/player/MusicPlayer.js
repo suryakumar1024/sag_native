@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import {
   View,
@@ -13,6 +13,8 @@ import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import AudioControls from "./AudioControls";
 
 const Songs = () => {
+  ///  songs are not fetched from spotify api
+  
   const songs = useSelector((state) => state.user.songs);
   const navigate = useNavigate();
 

@@ -6,6 +6,7 @@ const userIntial = {
   password: "",
   songs: [],
   localSongs:[],
+  filteredSongs:[]
 };
 
 const userSlice = createSlice({
@@ -22,6 +23,9 @@ const userSlice = createSlice({
     },
     getLocalAudio(state,action){
       state.localSongs=action.payload
+    },
+    getFilteredSongs(state,action){
+      state.filteredSongs=action.payload
     }
   },
 });
