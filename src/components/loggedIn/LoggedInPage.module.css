@@ -1,0 +1,47 @@
+.main-cointainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #e1eedd;
+}
+.box {
+  text-align: center;
+  height: 80%;
+  width: 80%;
+  background-color: #fefbe9;
+  position: relative;
+  margin-top: 1rem;
+}
+.welcome {
+  font-weight: 500;
+  font-size: 100px;
+  margin-top: 2rem;
+}
+.message {
+  position: absolute;
+  top: 163px;
+  left: 358px;
+  font-size: 20px;
+}
+.buttons-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.button {
+  border: none;
+  border-radius: 10px;
+  background-color: #183a1d;
+  color: #e1eedd;
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+}
+.button:disabled{
+  background-color:#768b78 ;
+}
+
+.music-player {
+  background-color: #383838;
+  height: 200px;
+  width: 200px;
+}
