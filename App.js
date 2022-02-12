@@ -9,14 +9,15 @@ const App = () => {
    console.log(bmi);
   }
   return (
-    <View style={style.mainContainer}>
-         <LinearGradient
+    <LinearGradient
+         style={{flex:1}}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', '#3b5998']}>
+          colors={['#4c669f', '#a54343']}>
+    <View style={style.mainContainer}>
         <Button onPress={bmiCalculator} title='bmi' />
-        </LinearGradient>
       </View>
+        </LinearGradient>
   );
 };
 
