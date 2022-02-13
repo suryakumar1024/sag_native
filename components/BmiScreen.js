@@ -19,7 +19,7 @@ const BmiScreen = ({navigation}) => {
       const bmi = weight / (height * height);
       const roundedBmi = bmi.toFixed(2);
       setBmi(+roundedBmi);
-      console.log(height, weight, +roundedBmi);
+      
     } else {
       setBmi('Enter value first');
     }
