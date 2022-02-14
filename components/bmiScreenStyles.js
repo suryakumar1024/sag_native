@@ -43,6 +43,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
     textShadowColor: '#8E2DE2',
+    textShadowColor: '#000',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 5,
     marginBottom:10

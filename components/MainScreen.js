@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {style} from './mainScreenStyles';
 
@@ -9,6 +9,7 @@ const MainScreen = ({navigation}) => {
   };
   return (
     <View style={style.mainContainer}>
+      <StatusBar hidden={true} />
       <LinearGradient
         style={{
           flex: 1,
