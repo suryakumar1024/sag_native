@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "611974557103",
+    "firebase_url": "https://login-and-register-with-react-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "login-and-register-with-react",
+    "storage_bucket": "login-and-register-with-react.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611974557103:android:b3fcc3ba339b110488d35a",
+        "android_client_info": {
+          "package_name": "com.bmicalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611974557103-q9e8auk8ahdoi0sq0ki0gtb9oldkicnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0F5s6aEEvw9M1ljrb9KfkfZSoBNn6t1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611974557103-q9e8auk8ahdoi0sq0ki0gtb9oldkicnm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

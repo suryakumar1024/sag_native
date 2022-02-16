@@ -1,27 +1,33 @@
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, {Fragment, useRef, useState} from 'react';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {Fragment, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from './bmiScreenStyles';
-
-const BmiScreen = ({navigation}) => {
+import auth from '@react-native-firebase/auth'
+//BMI@123
+const BmiScreen = () => {
   const [bmi, setBmi] = useState('BMI');
   const [height, setHeight] = useState();
+  const [heightIsTouched, setHeightIsTouched] = useState(false);
   const [weight, setWeight] = useState();
+  const [heightIsValid, setHeightIsValid] = useState(false);
 
   const bmiCalculator = () => {
-    if (!!height && !!weight) {
+    if (!!height && !!weight && heightIsValid) {
       const bmi = weight / (height * height);
       const roundedBmi = bmi.toFixed(2);
       setBmi(+roundedBmi);
-      
     } else {
       setBmi('Enter value first');
+    }
+  };
+  const heightIsValidHandler = () => {
+    if (height <= 3.5) {
+      setHeightIsTouched(true);
+      setHeightIsValid(true);
+    }
+    if (height > 3.5) {
+      setHeightIsTouched(true);
+      setHeightIsValid(false);
     }
   };
 
@@ -32,18 +38,26 @@ const BmiScreen = ({navigation}) => {
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
         colors={['#4A00E0', '#8E2DE2']}>
-        {/* <ScrollView  > */}
         <View style={styles.centerBox}>
           <TextInput
+            selectionColor={'#000'}
+            placeholderTextColor="#ccc"
+            onBlur={heightIsValidHandler}
+            maxLength={4}
             keyboardType="numeric"
-            placeholder="Height in m"
+            placeholder="Heightd in m (eg:1.75)"
             style={styles.textInput}
             value={height}
             onChangeText={e => setHeight(e)}
           />
+          {!heightIsValid && heightIsTouched && (
+            <Text style={styles.warning}>Enter a valid height in m(175cm=1.75m)</Text>
+          )}
           <TextInput
+            placeholderTextColor="#ccc"
+            maxLength={3}
             keyboardType="numeric"
-            placeholder="Weight in kg"
+            placeholder="Weight in kg (eg:65)"
             style={styles.textInput}
             value={weight}
             onChangeText={e => setWeight(e)}
@@ -52,7 +66,6 @@ const BmiScreen = ({navigation}) => {
           <Text style={styles.results}>{bmi}</Text>
         </View>
 
-        {/* </ScrollView> */}
         <TouchableOpacity>
           <View style={styles.bmiButton}>
             <Text onPress={bmiCalculator} style={styles.calculate}>

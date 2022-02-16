@@ -23,21 +23,21 @@ const MainScreen = ({navigation}) => {
           <Text style={style.details}>calculate your bmi</Text>
         </View>
         <View style={style.bottomContainer}>
-          <TouchableOpacity onPress={bmiScreen}>
-            <LinearGradient
-              style={{
-                borderRadius: 30,
-                elevation: 15,
-                shadowColor: '#4A00E0',
-              }}
-              start={{x: 1, y: 1}}
-              end={{x: 0, y: 0}}
-              colors={['#4A00E0', '#8E2DE2']}>
+          <LinearGradient
+            style={{
+              borderRadius: 30,
+              elevation: 15,
+              shadowColor: '#4A00E0',
+            }}
+            start={{x: 1, y: 1}}
+            end={{x: 0, y: 0}}
+            colors={['#4A00E0', '#8E2DE2']}>
+            <TouchableOpacity onPress={bmiScreen}>
               <View style={style.startButton}>
                 <Text style={style.start}>Start</Text>
               </View>
-            </LinearGradient>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </LinearGradient>
         </View>
       </LinearGradient>
     </View>

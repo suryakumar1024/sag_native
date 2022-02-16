@@ -8,9 +8,7 @@ import MainScreen from './components/MainScreen';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-    // <View style={style.mainContainer}>
-    //   <MainScreen />
-    // </View>
+    
     <NavigationContainer>
       <Stack.Navigator initialRouteName="home">
         <Stack.Screen

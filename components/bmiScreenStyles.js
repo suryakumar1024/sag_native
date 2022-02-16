@@ -31,14 +31,22 @@ export const styles = StyleSheet.create({
     shadowOpacity: 1,
     backgroundColor: '#ffffff',
   },
+  warning: {
+    position: 'absolute',
+    top: 115,
+    color: '#d81e1e',
+    fontWeight: 'bold',
+    fontSize: 15,
+    opacity: 0.5,
+  },
   range: {
     marginTop: 20,
     fontSize: 17,
-    opacity:0.5,
+    opacity: 0.5,
   },
   results: {
-    fontFamily:'Roboto-Bold',
-    color:'#6F1BE1',
+    fontFamily: 'Roboto-Bold',
+    color: '#6F1BE1',
     fontSize: 50,
     marginTop: 20,
     textAlign: 'center',
@@ -46,7 +54,7 @@ export const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 5,
-    marginBottom:10
+    marginBottom: 10,
   },
   bmiButton: {
     width: 200,
