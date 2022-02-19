@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export const style = StyleSheet.create({
+  lgStart:{
+    borderRadius: 30,
+    elevation: 15,
+    shadowColor: '#4A00E0',
+  },
   mainContainer: {
     flex: 1,
   },

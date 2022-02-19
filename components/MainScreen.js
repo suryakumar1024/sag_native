@@ -3,6 +3,7 @@ import {Text, View, TouchableOpacity, StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {style} from './mainScreenStyles';
 
+ const gradientColors=['#4A00E0', '#8E2DE2']
 const MainScreen = ({navigation}) => {
   const bmiScreen = () => {
     navigation.navigate('bmi');
@@ -11,12 +12,10 @@ const MainScreen = ({navigation}) => {
     <View style={style.mainContainer}>
       <StatusBar hidden={true} />
       <LinearGradient
-        style={{
-          flex: 1,
-        }}
+        style={style.lgBg}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
-        colors={['#4A00E0', '#8E2DE2']}>
+        colors={gradientColors}>
         <View style={style.upperContainer}>
           <Text style={[style.header, style.stay]}>STAY</Text>
           <Text style={[style.header, style.fit]}>FIT.</Text>
@@ -24,14 +23,10 @@ const MainScreen = ({navigation}) => {
         </View>
         <View style={style.bottomContainer}>
           <LinearGradient
-            style={{
-              borderRadius: 30,
-              elevation: 15,
-              shadowColor: '#4A00E0',
-            }}
+            style={style.lgStart}
             start={{x: 1, y: 1}}
             end={{x: 0, y: 0}}
-            colors={['#4A00E0', '#8E2DE2']}>
+            colors={gradientColors}>
             <TouchableOpacity onPress={bmiScreen}>
               <View style={style.startButton}>
                 <Text style={style.start}>Start</Text>
