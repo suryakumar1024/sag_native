@@ -7,56 +7,55 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useState} from 'react';
-import ProductProvider from '../store/ProductProvider';
+import {useDispatch} from 'react-redux';
+import {productsActions} from '../redux-store/store';
 
 const Add = props => {
+  const dispatch = useDispatch();
   const [productName, setProductName] = useState('');
   const [productCost, setProductCost] = useState();
-  const [product, setProduct] = useState([]);
 
   const addItemHandler = () => {
-    // updating product array in add component
 
-    setProduct(items => {
-      return [...items, {name: productName, cost: productCost}];
-    });
-    console.log('in add modal', product);
+    dispatch(
+      productsActions.addProduct({
+        products: {
+          name: productName,
+          cost: productCost,
+        },
+      }),
+      productsActions.closeModal()
+    );
 
-    // props.closeModal()
-
+dispatch(productsActions.closeModal())
+   
   };
-  // const closeHandler = () => {
-  //   props.closeModal();
-  // };
+  const closeHandler = () => {
+   dispatch(productsActions.closeModal())
+  };
   return (
-// passing updated array to context api through value prop 
 
-    <ProductProvider value={{items: product}}>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Product name"
-          style={styles.productInput}
-          onChangeText={e => setProductName(e)}
-        />
-        <TextInput
-          placeholder="Amount"
-          keyboardType="numeric"
-          style={styles.productInput}
-          onChangeText={e => setProductCost(e)}
-        />
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-          <TouchableOpacity onPress={addItemHandler}>
-            <Text>Add item</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-          // onPress={closeHandler}
-          >
-            <Text>Close</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.inputContainer}>
+      <TextInput
+        placeholder="Product name"
+        style={styles.productInput}
+        onChangeText={e => setProductName(e)}
+      />
+      <TextInput
+        placeholder="Amount"
+        keyboardType="numeric"
+        style={styles.productInput}
+        onChangeText={e => setProductCost(e)}
+      />
+      <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+        <TouchableOpacity onPress={addItemHandler}>
+          <Text>Add item</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={closeHandler}>
+          <Text>Close</Text>
+        </TouchableOpacity>
       </View>
-    </ProductProvider>
+    </View>
   );
 };
 

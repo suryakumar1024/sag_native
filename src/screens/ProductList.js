@@ -1,27 +1,14 @@
-import {Alert, Modal, ScrollView, StatusBar, Text, View} from 'react-native';
-import React, {useContext, useState} from 'react';
+import {ScrollView, StatusBar, View} from 'react-native';
+import React from 'react';
 import {styles} from './productList-style';
 import AddButtons from '../component/AddButtons';
-import Add from '../component/Add';
 import AddIcon from '../component/AddIcon';
 import Product from '../component/Product';
-import ProductContext from '../store/ProductContext';
+import {useSelector} from 'react-redux';
+import ProductModal from '../component/Modal';
 
 const ProductList = props => {
-  const [showModal, setShowModal] = useState(false);
-  const ctx = useContext(ProductContext);
-
-  // check for updated array in context
-  
-  console.log('context value',ctx);
-
-  // const showModalHandler = () => {
-  //   setShowModal(true);
-  // };
-
-  // const closeModalHandler = () => {
-  //   setShowModal(false);
-  // };
+  const products = useSelector(state => state.product.products);
 
   return (
     <View style={styles.mainContainer}>
@@ -33,24 +20,17 @@ const ProductList = props => {
           flexGrow: 1,
           alignItems: 'center',
         }}>
-        {/* <Modal
-          animationType={'slide'}
-          transparent={false}
-          visible={showModal}
-          onRequestClose={() => {}}>
-          <Add closeModal={closeModalHandler} />
-        </Modal> */}
 
-        <Add />
+        <ProductModal />
 
-        {ctx.items.map(item => (
+        {products.map(item => (
           <Product key={Math.random()} cost={item.cost} name={item.name} />
         ))}
       </ScrollView>
+
       <AddButtons />
-      <AddIcon
-      //  modal={showModalHandler}
-        />
+      <AddIcon />
+
     </View>
   );
 };
