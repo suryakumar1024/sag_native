@@ -9,7 +9,7 @@ const HomeNavigation = () => {
   <stack.Navigator screenOptions={{headerShown:false}} >
 
       <stack.Screen  name='products' component={ProductList}/>
-      <stack.Screen  name='addProduct' component={BillPage}/>
+      <stack.Screen  name='billPage' component={BillPage}/>
 
   </stack.Navigator>
   )
