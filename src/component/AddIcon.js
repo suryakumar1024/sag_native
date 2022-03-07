@@ -1,7 +1,7 @@
 import { View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {styles} from './addIcon-style';
+import {styles} from './styles/addIcon-style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {productsActions} from '../redux-store/store';

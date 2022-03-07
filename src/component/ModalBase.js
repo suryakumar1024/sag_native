@@ -1,4 +1,11 @@
-import {Button, FormControl, Input, Modal, Toast} from 'native-base';
+import {
+  Button,
+  FormControl,
+  Input,
+  Modal,
+  Toast,
+
+} from 'native-base';
 import React, {Fragment, useState} from 'react';
 import {Appearance} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,14 +17,17 @@ const ModalBase = () => {
   const [productName, setProductName] = useState('');
   const [productCost, setProductCost] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme());
+  const [nameError, setNameError] = useState();
+  const [costError, setCostError] = useState();
 
   Appearance.addChangeListener(mode => {
     setTheme(mode.colorScheme);
   });
-  // console.log(theme);
 
   const addItemHandler = () => {
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
+      setNameError();
+      setCostError();
       dispatch(
         productsActions.addProduct({
           products: {
@@ -34,8 +44,16 @@ const ModalBase = () => {
       Toast.show({
         description: 'Item was successfully added.',
       });
+    }
+    if (productName.trim().length === 0) {
+      setNameError('notValid');
     } else {
-      alert('Enter name and cost first');
+      setNameError();
+    }
+    if (productCost.trim().length === 0) {
+      setCostError('notValid');
+    } else {
+      setCostError();
     }
   };
 
@@ -46,22 +64,34 @@ const ModalBase = () => {
     <Fragment>
       <Modal isOpen={showModal} onClose={closeHandler}>
         <Modal.Content
-          bg={theme==='dark'?"#4e4f4c":'#eee'}
+          bg={theme === 'dark' ? '#4e4f4c' : '#eee'}
           // _light={{backgroundColor:'#000'}}
           // _dark={{backgroundColor:'#fff'}}
         >
-          <Modal.CloseButton  />
+          <Modal.CloseButton />
           <Modal.Header>Add item</Modal.Header>
           <Modal.Body>
-            <FormControl>
+            <FormControl isRequired={true} isInvalid={nameError === 'notValid'}>
               <FormControl.Label>Name</FormControl.Label>
               <Input
                 placeholder="Name of the product"
                 value={productName}
                 onChangeText={e => setProductName(e)}
               />
+              {nameError === 'notValid' ? (
+                <FormControl.ErrorMessage>
+                  Enter a valid name
+                </FormControl.ErrorMessage>
+              ) : (
+                <FormControl.HelperText _text={{fontSize: 'xs'}}>
+                  Enter name of the product
+                </FormControl.HelperText>
+              )}
             </FormControl>
-            <FormControl mt="3">
+            <FormControl
+              isRequired={true}
+              isInvalid={costError === 'notValid'}
+              mt="3">
               <FormControl.Label>Cost</FormControl.Label>
               <Input
                 placeholder="Cost of the product"
@@ -69,12 +99,24 @@ const ModalBase = () => {
                 value={productCost}
                 onChangeText={e => setProductCost(e)}
               />
+              {costError === 'notValid' ? (
+                <FormControl.ErrorMessage>
+                  Enter a valid cost
+                </FormControl.ErrorMessage>
+              ) : (
+                <FormControl.HelperText _text={{fontSize: 'xs'}}>
+                  Cost must be in numeric
+                </FormControl.HelperText>
+              )}
             </FormControl>
-            <Modal.Footer
-            bg={theme==='dark'?"#4e4f4c":'#eee'}
-            >
+            <Modal.Footer bg={theme === 'dark' ? '#4e4f4c' : '#eee'}>
               <Button.Group>
-                <Button onPress={closeHandler} variant="outline">
+                <Button
+                  onPress={closeHandler}
+                  _light={{bg: 'yellow.600', _text: {color: 'white'}}}
+                  _dark={{bg: 'blueGray.900',_text:{color:'warning.800'}}}
+                  // variant="outline"
+                  >
                   Close
                 </Button>
                 <Button onPress={addItemHandler}>Add</Button>

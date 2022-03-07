@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {styles} from './product-style';
+import {styles} from './styles/product-style';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {productsActions} from '../redux-store/store';
@@ -10,16 +10,10 @@ const Product = props => {
   const dispatch = useDispatch();
 
   const deleteHandler = () => {
-
     const deletedArray = products.filter(item => item.id !== props.id);
     dispatch(productsActions.deleteHandler({products: deletedArray}));
-
   };
   const editHandler = () => {
-
-    // const editItemIndex = products.findIndex(item => item.id === props.id);
-    // console.log(editItemIndex);
-
     const deletedArray = products.filter(item => item.id !== props.id);
     dispatch(productsActions.deleteHandler({products: deletedArray}));
 

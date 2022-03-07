@@ -1,22 +1,17 @@
-import { StyleSheet,  Text,  View } from 'react-native'
-import React from 'react'
+import {StyleSheet} from 'react-native';
+import React from 'react';
+import WebView from 'react-native-webview';
 
 const BillPage = () => {
   return (
-  
-    <View style={styles.container}>
-   
-     <Text style={{fontSize:50}} > bill page</Text>
-    </View>
-  )
-}
+    <WebView
+      source={{
+        uri: 'https://www.npmjs.com/package/react-native-webview',
+      }}
+    />
+  );
+};
 
-export default BillPage
+export default BillPage;
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    padding:10,
-    position:'relative',
-alignItems:'center'  }
-})
+

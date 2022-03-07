@@ -5,26 +5,30 @@ import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {productsActions} from '../redux-store/store';
 import AddIcon from './AddIcon';
-import { styles } from './bottomBar-style';
+import { styles } from './styles/bottomBar-style';
+import { Toast, useToast } from 'native-base';
+import { useNavigation } from '@react-navigation/core';
 
 
 
 const BottomBar = props => {
   const productsArray = useSelector(state => state.product.products);
   const dispatch = useDispatch();
+  const toast =useToast()
+ const navigation= useNavigation()
 
   const postBillHandler = () => {
     if(productsArray.length!==0){
       postBill(productsArray);
       dispatch(productsActions.submitHandler());
     }else{
-      alert('Add item first')
+      toast.show( {title: 'Add item first',
+    placement:'top'})
     }
   };
 
   const billsHandler=()=>{
-    console.log('bill page');
-
+navigation.navigate('billPage')
   }
 
   return (
