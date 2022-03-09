@@ -1,3 +1,4 @@
+import { nanoid } from '@reduxjs/toolkit';
 import {
   Button,
   FormControl,
@@ -9,7 +10,8 @@ import {
 import React, {Fragment, useState} from 'react';
 import {Appearance} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {productsActions} from '../redux-store/store';
+import { addOne } from '../redux-store/ProductSlice2';
+import { productsActions} from '../redux-store/store';
 
 const ModalBase = () => {
   const showModal = useSelector(state => state.product.showModal);
@@ -28,15 +30,16 @@ const ModalBase = () => {
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
       setCostError();
-      dispatch(
-        productsActions.addProduct({
-          products: {
-            name: productName,
-            cost: productCost,
-            id: Math.floor(Math.random() * 100000000 + 1),
-          },
-        }),
-      );
+      // dispatch(
+      //   productsActions.addProduct({
+      //     products: {
+      //       name: productName,
+      //       cost: productCost,
+      //       id: Math.floor(Math.random() * 100000000 + 1),
+      //     },
+      //   }),
+      // );
+      dispatch(addOne({id:nanoid(),name:productName,cost:productCost}))
 
       dispatch(productsActions.closeModal());
       setProductName('');
@@ -62,7 +65,7 @@ const ModalBase = () => {
   };
   return (
     <Fragment>
-      <Modal isOpen={showModal} onClose={closeHandler}>
+      <Modal isOpen={true} onClose={closeHandler}>
         <Modal.Content
           bg={theme === 'dark' ? '#4e4f4c' : '#eee'}
           // _light={{backgroundColor:'#000'}}

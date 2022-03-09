@@ -4,16 +4,23 @@ import {styles} from './styles/product-style';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
 import {productsActions} from '../redux-store/store';
+import { productSelector, removeOne } from '../redux-store/ProductSlice2';
 
 const Product = props => {
   const products = useSelector(state => state.product.products);
+  const prods = useSelector(productSelector.selectAll)
+
+  
   const dispatch = useDispatch();
 
   const deleteHandler = () => {
-    const deletedArray = products.filter(item => item.id !== props.id);
-    dispatch(productsActions.deleteHandler({products: deletedArray}));
+    // const deletedArray = prods.filter(item => item.id !== props.id);
+    // dispatch(productsActions.deleteHandler({products: deletedArray}));
+    dispatch(removeOne(props.id))
+
   };
   const editHandler = () => {
+    
     const deletedArray = products.filter(item => item.id !== props.id);
     dispatch(productsActions.deleteHandler({products: deletedArray}));
 

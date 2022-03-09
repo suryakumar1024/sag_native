@@ -5,6 +5,8 @@ import {styles} from './styles/addIcon-style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {productsActions} from '../redux-store/store';
+import { addOne } from '../redux-store/ProductSlice2';
+import { nanoid } from '@reduxjs/toolkit';
 
 const AddIcon = props => {
   const dispatch = useDispatch();

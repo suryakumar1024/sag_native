@@ -1,4 +1,9 @@
-import {configureStore, createSlice} from '@reduxjs/toolkit';
+import {
+  configureStore,
+  createEntityAdapter,
+  createSlice,
+} from '@reduxjs/toolkit';
+import ProductSlice2 from './ProductSlice2';
 
 const productSlice = createSlice({
   name: 'products',
@@ -11,8 +16,8 @@ const productSlice = createSlice({
   reducers: {
     addProduct(state, action) {
       state.products = [...state.products, action.payload.products];
-      state.defaultCost='';
-      state.defaultName=''
+      state.defaultCost = '';
+      state.defaultName = '';
     },
     openModal(state, action) {
       state.showModal = true;
@@ -20,8 +25,8 @@ const productSlice = createSlice({
 
     closeModal(state, action) {
       state.showModal = false;
-      state.defaultCost='';
-      state.defaultName=''
+      state.defaultCost = '';
+      state.defaultName = '';
     },
     submitHandler(state) {
       state.products = [];
@@ -38,6 +43,7 @@ const productSlice = createSlice({
 });
 
 export const productsActions = productSlice.actions;
+
 export const store = configureStore({
-  reducer: {product: productSlice.reducer},
+  reducer: {product: productSlice.reducer, product2: ProductSlice2},
 });
