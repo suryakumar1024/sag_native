@@ -20,6 +20,7 @@ const ModalBase = () => {
   });
 
   const addItemHandler = () => {
+
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
       setCostError();
@@ -97,8 +98,7 @@ const ModalBase = () => {
               <Button.Group>
                 <Button
                   onPress={closeHandler}
-                  _light={{bg: 'yellow.600', _text: {color: 'white'}}}
-                  _dark={{bg: 'blueGray.900', _text: {color: 'warning.800'}}}
+                  variant='ghost'
                 >
                   Close
                 </Button>

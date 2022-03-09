@@ -23,11 +23,7 @@ const productSlice = createSlice({
       state.defaultCost = '';
       state.defaultName = '';
     },
-    editModal(state, action) {
-      state.showModal = true;
-      state.defaultName = action.payload.name;
-      state.defaultCost = action.payload.cost;
-    },
+  
   },
 });
 

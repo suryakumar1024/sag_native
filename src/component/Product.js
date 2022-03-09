@@ -3,26 +3,18 @@ import React from 'react';
 import {styles} from './styles/product-style';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
-import {productsActions} from '../redux-store/store';
-import { productSelector, removeOne } from '../redux-store/ProductSlice2';
+import {productSelector, removeOne} from '../redux-store/ProductSlice2';
 
 const Product = props => {
-  const products = useSelector(state => state.product.products);
-  const prods = useSelector(productSelector.selectAll)
+  const prods = useSelector(productSelector.selectAll);
 
-  
   const dispatch = useDispatch();
 
   const deleteHandler = () => {
-    
-    dispatch(removeOne(props.id))
-
+    dispatch(removeOne(props.id));
   };
   const editHandler = () => {
-    
-    const deletedArray = products.filter(item => item.id !== props.id);
-
-    dispatch(productsActions.editModal({name: props.name, cost: props.cost}));
+    console.log('edit handler');
   };
   return (
     <View style={styles.product}>
