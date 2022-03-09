@@ -1,17 +1,10 @@
-import { nanoid } from '@reduxjs/toolkit';
-import {
-  Button,
-  FormControl,
-  Input,
-  Modal,
-  Toast,
-
-} from 'native-base';
+import {nanoid} from '@reduxjs/toolkit';
+import {Button, FormControl, Input, Modal, Toast} from 'native-base';
 import React, {Fragment, useState} from 'react';
 import {Appearance} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import { addOne } from '../redux-store/ProductSlice2';
-import { productsActions} from '../redux-store/store';
+import {addOne} from '../redux-store/ProductSlice2';
+import {productsActions} from '../redux-store/store';
 
 const ModalBase = () => {
   const showModal = useSelector(state => state.product.showModal);
@@ -30,16 +23,8 @@ const ModalBase = () => {
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
       setCostError();
-      // dispatch(
-      //   productsActions.addProduct({
-      //     products: {
-      //       name: productName,
-      //       cost: productCost,
-      //       id: Math.floor(Math.random() * 100000000 + 1),
-      //     },
-      //   }),
-      // );
-      dispatch(addOne({id:nanoid(),name:productName,cost:productCost}))
+      
+      dispatch(addOne({id: nanoid(), name: productName, cost: productCost}));
 
       dispatch(productsActions.closeModal());
       setProductName('');
@@ -65,12 +50,8 @@ const ModalBase = () => {
   };
   return (
     <Fragment>
-      <Modal isOpen={true} onClose={closeHandler}>
-        <Modal.Content
-          bg={theme === 'dark' ? '#4e4f4c' : '#eee'}
-          // _light={{backgroundColor:'#000'}}
-          // _dark={{backgroundColor:'#fff'}}
-        >
+      <Modal isOpen={showModal} onClose={closeHandler}>
+        <Modal.Content bg={theme === 'dark' ? '#4e4f4c' : '#eee'}>
           <Modal.CloseButton />
           <Modal.Header>Add item</Modal.Header>
           <Modal.Body>
@@ -117,9 +98,8 @@ const ModalBase = () => {
                 <Button
                   onPress={closeHandler}
                   _light={{bg: 'yellow.600', _text: {color: 'white'}}}
-                  _dark={{bg: 'blueGray.900',_text:{color:'warning.800'}}}
-                  // variant="outline"
-                  >
+                  _dark={{bg: 'blueGray.900', _text: {color: 'warning.800'}}}
+                >
                   Close
                 </Button>
                 <Button onPress={addItemHandler}>Add</Button>

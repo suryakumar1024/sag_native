@@ -14,7 +14,6 @@ const productSlice2 = createSlice({
   },
 });
 
-// console.log(productSelector);
 
 export const {addOne,removeOne,removeAll} = productSlice2.actions;
 

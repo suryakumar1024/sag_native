@@ -8,17 +8,12 @@ import ProductSlice2 from './ProductSlice2';
 const productSlice = createSlice({
   name: 'products',
   initialState: {
-    products: [],
     showModal: false,
     defaultName: '',
     defaultCost: '',
   },
   reducers: {
-    addProduct(state, action) {
-      state.products = [...state.products, action.payload.products];
-      state.defaultCost = '';
-      state.defaultName = '';
-    },
+   
     openModal(state, action) {
       state.showModal = true;
     },
@@ -27,12 +22,6 @@ const productSlice = createSlice({
       state.showModal = false;
       state.defaultCost = '';
       state.defaultName = '';
-    },
-    submitHandler(state) {
-      state.products = [];
-    },
-    deleteHandler(state, action) {
-      state.products = action.payload.products;
     },
     editModal(state, action) {
       state.showModal = true;

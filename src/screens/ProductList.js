@@ -22,9 +22,8 @@ const ProductList = props => {
           flexGrow: 1,
           alignItems: 'center',
         }}>
-       {false && <ModalBase />}
+       <ModalBase />
        
-       {/* {true && <ModalBase />} */}
 
         {prods.map(item => (
 

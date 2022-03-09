@@ -14,15 +14,13 @@ const Product = props => {
   const dispatch = useDispatch();
 
   const deleteHandler = () => {
-    // const deletedArray = prods.filter(item => item.id !== props.id);
-    // dispatch(productsActions.deleteHandler({products: deletedArray}));
+    
     dispatch(removeOne(props.id))
 
   };
   const editHandler = () => {
     
     const deletedArray = products.filter(item => item.id !== props.id);
-    dispatch(productsActions.deleteHandler({products: deletedArray}));
 
     dispatch(productsActions.editModal({name: props.name, cost: props.cost}));
   };
