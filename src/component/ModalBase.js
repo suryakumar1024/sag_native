@@ -1,7 +1,9 @@
+import {nanoid} from '@reduxjs/toolkit';
 import {Button, FormControl, Input, Modal, Toast} from 'native-base';
 import React, {Fragment, useState} from 'react';
 import {Appearance} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {addOne} from '../redux-store/ProductSlice2';
 import {productsActions} from '../redux-store/store';
 
 const ModalBase = () => {
@@ -10,23 +12,20 @@ const ModalBase = () => {
   const [productName, setProductName] = useState('');
   const [productCost, setProductCost] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme());
+  const [nameError, setNameError] = useState();
+  const [costError, setCostError] = useState();
 
   Appearance.addChangeListener(mode => {
     setTheme(mode.colorScheme);
   });
-  // console.log(theme);
 
   const addItemHandler = () => {
+
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
-      dispatch(
-        productsActions.addProduct({
-          products: {
-            name: productName,
-            cost: productCost,
-            id: Math.floor(Math.random() * 100000000 + 1),
-          },
-        }),
-      );
+      setNameError();
+      setCostError();
+      
+      dispatch(addOne({id: nanoid(), name: productName, cost: productCost}));
 
       dispatch(productsActions.closeModal());
       setProductName('');
@@ -34,8 +33,16 @@ const ModalBase = () => {
       Toast.show({
         description: 'Item was successfully added.',
       });
+    }
+    if (productName.trim().length === 0) {
+      setNameError('notValid');
     } else {
-      alert('Enter name and cost first');
+      setNameError();
+    }
+    if (productCost.trim().length === 0) {
+      setCostError('notValid');
+    } else {
+      setCostError();
     }
   };
 
@@ -45,23 +52,31 @@ const ModalBase = () => {
   return (
     <Fragment>
       <Modal isOpen={showModal} onClose={closeHandler}>
-        <Modal.Content
-          bg={theme==='dark'?"#4e4f4c":'#eee'}
-          // _light={{backgroundColor:'#000'}}
-          // _dark={{backgroundColor:'#fff'}}
-        >
-          <Modal.CloseButton  />
+        <Modal.Content bg={theme === 'dark' ? '#4e4f4c' : '#eee'}>
+          <Modal.CloseButton />
           <Modal.Header>Add item</Modal.Header>
           <Modal.Body>
-            <FormControl>
+            <FormControl isRequired={true} isInvalid={nameError === 'notValid'}>
               <FormControl.Label>Name</FormControl.Label>
               <Input
                 placeholder="Name of the product"
                 value={productName}
                 onChangeText={e => setProductName(e)}
               />
+              {nameError === 'notValid' ? (
+                <FormControl.ErrorMessage>
+                  Enter a valid name
+                </FormControl.ErrorMessage>
+              ) : (
+                <FormControl.HelperText _text={{fontSize: 'xs'}}>
+                  Enter name of the product
+                </FormControl.HelperText>
+              )}
             </FormControl>
-            <FormControl mt="3">
+            <FormControl
+              isRequired={true}
+              isInvalid={costError === 'notValid'}
+              mt="3">
               <FormControl.Label>Cost</FormControl.Label>
               <Input
                 placeholder="Cost of the product"
@@ -69,12 +84,22 @@ const ModalBase = () => {
                 value={productCost}
                 onChangeText={e => setProductCost(e)}
               />
+              {costError === 'notValid' ? (
+                <FormControl.ErrorMessage>
+                  Enter a valid cost
+                </FormControl.ErrorMessage>
+              ) : (
+                <FormControl.HelperText _text={{fontSize: 'xs'}}>
+                  Cost must be in numeric
+                </FormControl.HelperText>
+              )}
             </FormControl>
-            <Modal.Footer
-            bg={theme==='dark'?"#4e4f4c":'#eee'}
-            >
+            <Modal.Footer bg={theme === 'dark' ? '#4e4f4c' : '#eee'}>
               <Button.Group>
-                <Button onPress={closeHandler} variant="outline">
+                <Button
+                  onPress={closeHandler}
+                  variant='ghost'
+                >
                   Close
                 </Button>
                 <Button onPress={addItemHandler}>Add</Button>

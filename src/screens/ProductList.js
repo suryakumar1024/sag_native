@@ -1,17 +1,19 @@
 import {ScrollView, StatusBar, View} from 'react-native';
 import React from 'react';
-import {styles} from './productList-style';
+import {styles} from './styles/productList-style';
 import Product from '../component/Product';
 import {useSelector} from 'react-redux';
 import BottomBar from '../component/BottomBar';
 import ModalBase from '../component/ModalBase';
+import {productSelector} from '../redux-store/ProductSlice2';
 
 const ProductList = props => {
   const products = useSelector(state => state.product.products);
+  const prods = useSelector(productSelector.selectAll);
 
+  
   return (
     <View style={styles.mainContainer}>
-      
       <StatusBar hidden={true} />
       <ScrollView
         style={{width: '100%'}}
@@ -20,16 +22,21 @@ const ProductList = props => {
           flexGrow: 1,
           alignItems: 'center',
         }}>
+       <ModalBase />
+       
 
-        <ModalBase/>
+        {prods.map(item => (
 
-        {products.map(item => (
-          <Product key={item.id} id={item.id} cost={item.cost} name={item.name} />
+          <Product
+            key={item.id}
+            id={item.id}
+            cost={item.cost}
+            name={item.name}
+          />
         ))}
       </ScrollView>
 
       <BottomBar />
-
     </View>
   );
 };
