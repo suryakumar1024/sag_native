@@ -1,17 +1,22 @@
 import {ScrollView, StatusBar, View} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {styles} from './styles/productList-style';
 import Product from '../component/Product';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import BottomBar from '../component/BottomBar';
 import ModalBase from '../component/ModalBase';
 import {productSelector} from '../redux-store/ProductSlice2';
+import { getBills } from '../request-factory/request-factory';
 
 const ProductList = props => {
   const products = useSelector(state => state.product.products);
   const prods = useSelector(productSelector.selectAll);
-
+  const dispatch=useDispatch()
+useEffect(()=>{
+  dispatch(getBills())
+},[])
   
+console.log(prods);
   return (
     <View style={styles.mainContainer}>
       <StatusBar hidden={true} />
