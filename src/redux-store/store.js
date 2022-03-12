@@ -16,6 +16,7 @@ const productSlice = createSlice({
    
     openModal(state, action) {
       state.showModal = true;
+      
     },
 
     closeModal(state, action) {
