@@ -12,7 +12,7 @@ import {postBill} from '../request-factory/request-factory';
 const BottomBar = props => {
   const productsArray = useSelector(state => state.product.products);
   const items = useSelector(productSelector.selectAll);
-  const loading = useSelector(productSelector.selectEntities);
+  const loading = useSelector(productSelector.selectIds);
   const dispatch = useDispatch();
   const toast = useToast();
   const navigation = useNavigation();

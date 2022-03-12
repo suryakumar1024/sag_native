@@ -34,15 +34,10 @@ const productSlice2 = createSlice({
       state.loading = true;
     },
     [getBills.fulfilled](state, {payload}) {
-      state.loading = false;debugger;
-      var test = {
-        "-MxiRJC7eRAmmjgs8DJN": 
-            {
-                "cost": "80",
-                "id": "69BHQN5F7RItMZrFFIEz1",
-                "name": "name"
-            }};
-      productAdaptor.setAll( state,test);
+      state.loading = false;
+      // debugger;
+      
+      productAdaptor.setAll( state,payload);
       console.log('get bill from reducer');
     },
     [getBills.rejected](state) {

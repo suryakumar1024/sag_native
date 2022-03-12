@@ -8,20 +8,21 @@ export const postBill = createAsyncThunk('products2/postProducts',async(data)=>{
     data,
   )
   .then(res => {
-    console.log(res);
+    console.log(res,'post res');
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err,'err from post'));
 }) 
 
 export const getBills=createAsyncThunk('procutss2/getBills',async()=>{
-  return axios
+   axios
   .get(
     'https://cart-f6d03-default-rtdb.asia-southeast1.firebasedatabase.app/bills.json',
   
   )
   .then(res => {
-    console.log(res);
-    return res.data
+    console.log(res.data,'get res');
+     const data= res.data
+     debugger;
   })
-  .catch(err => console.log(err));
+  .catch(err => console.log(err,'err from get'));
 })

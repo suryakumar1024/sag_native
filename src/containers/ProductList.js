@@ -9,8 +9,10 @@ import {productSelector} from '../redux-store/ProductSlice2';
 import { getBills } from '../request-factory/request-factory';
 
 const ProductList = props => {
-  const products = useSelector(state => state.product.products);
-  const prods = useSelector(productSelector.selectAll);
+  // const products = useSelector(state => state.product.products);
+
+  const prods = useSelector(productSelector.selectIds)
+
   const dispatch=useDispatch()
 useEffect(()=>{
   dispatch(getBills())
