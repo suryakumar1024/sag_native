@@ -10,7 +10,7 @@ const ModalBase = () => {
   const showModal = useSelector(state => state.product.showModal);
   const dispatch = useDispatch();
   const [productName, setProductName] = useState('');
-  const [productCost, setProductCost] = useState('');
+  const [productCost, setProductCost] = useState();
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [nameError, setNameError] = useState();
   const [costError, setCostError] = useState();
@@ -20,35 +20,38 @@ const ModalBase = () => {
   });
 
   const addItemHandler = () => {
-
+    debugger;
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
+      if (!+productCost) {
+        return setCostError('Cost must be number');
+      }
       setCostError();
-      
+
       dispatch(addOne({id: nanoid(), name: productName, cost: productCost}));
 
       dispatch(productsActions.closeModal());
       setProductName('');
-      setProductCost('');
+      setProductCost();
       Toast.show({
         description: 'Item was successfully added.',
       });
     }
-    if (productName.trim().length === 0) {
-      setNameError('notValid');
-    } else {
-      setNameError();
+    if (productName === undefined || productName.trim().length === 0) {
+      setNameError('Name must not be empty');
     }
-    if (productCost.trim().length === 0) {
-      setCostError('notValid');
-    } else {
-      setCostError();
+
+    if (productCost === undefined || productCost.trim().length === 0) {
+      setCostError('Cost must not be empty');
     }
   };
 
   const closeHandler = () => {
     dispatch(productsActions.closeModal());
+    setCostError();
+    setNameError();
   };
+
   return (
     <Fragment>
       <Modal isOpen={showModal} onClose={closeHandler}>
@@ -56,17 +59,15 @@ const ModalBase = () => {
           <Modal.CloseButton />
           <Modal.Header>Add item</Modal.Header>
           <Modal.Body>
-            <FormControl isRequired={true} isInvalid={nameError === 'notValid'}>
+            <FormControl isRequired={true} isInvalid={nameError !== undefined}>
               <FormControl.Label>Name</FormControl.Label>
               <Input
                 placeholder="Name of the product"
                 value={productName}
                 onChangeText={e => setProductName(e)}
               />
-              {nameError === 'notValid' ? (
-                <FormControl.ErrorMessage>
-                  Enter a valid name
-                </FormControl.ErrorMessage>
+              {nameError ? (
+                <FormControl.ErrorMessage>{nameError}</FormControl.ErrorMessage>
               ) : (
                 <FormControl.HelperText _text={{fontSize: 'xs'}}>
                   Enter name of the product
@@ -75,7 +76,7 @@ const ModalBase = () => {
             </FormControl>
             <FormControl
               isRequired={true}
-              isInvalid={costError === 'notValid'}
+              isInvalid={costError !== undefined}
               mt="3">
               <FormControl.Label>Cost</FormControl.Label>
               <Input
@@ -84,10 +85,8 @@ const ModalBase = () => {
                 value={productCost}
                 onChangeText={e => setProductCost(e)}
               />
-              {costError === 'notValid' ? (
-                <FormControl.ErrorMessage>
-                  Enter a valid cost
-                </FormControl.ErrorMessage>
+              {costError ? (
+                <FormControl.ErrorMessage>{costError}</FormControl.ErrorMessage>
               ) : (
                 <FormControl.HelperText _text={{fontSize: 'xs'}}>
                   Cost must be in numeric
@@ -96,10 +95,7 @@ const ModalBase = () => {
             </FormControl>
             <Modal.Footer bg={theme === 'dark' ? '#4e4f4c' : '#eee'}>
               <Button.Group>
-                <Button
-                  onPress={closeHandler}
-                  variant='ghost'
-                >
+                <Button onPress={closeHandler} variant="ghost">
                   Close
                 </Button>
                 <Button onPress={addItemHandler}>Add</Button>
