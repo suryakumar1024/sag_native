@@ -11,14 +11,16 @@ import { getBills } from '../request-factory/request-factory';
 const ProductList = props => {
   // const products = useSelector(state => state.product.products);
 
-  const prods = useSelector(productSelector.selectIds)
+  const prods = useSelector(productSelector.selectAll)
 
-  const dispatch=useDispatch()
-useEffect(()=>{
-  dispatch(getBills())
-},[])
+
+
+//   const dispatch=useDispatch()
+// useEffect(()=>{
+//   dispatch(getBills())
+// },[])
   
-console.log(prods);
+// console.log(prods);
   return (
     <View style={styles.mainContainer}>
       <StatusBar hidden={true} />

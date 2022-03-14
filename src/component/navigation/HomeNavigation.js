@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import ProductList from '../screens/ProductList';
-import BillPage from '../screens/BillPage';
-import Web from '../screens/Web';
+import ProductList from '../../containers/ProductList';
+import BillPage from '../../containers/BillPage';
+// import Web from '../../containers/Web';
 const stack = createStackNavigator();
 
 const HomeNavigation = () => {

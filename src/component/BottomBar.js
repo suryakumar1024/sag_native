@@ -28,7 +28,7 @@ const BottomBar = props => {
       toast.show({title: 'Add item first', placement: 'top'});
     }
   };
-  console.log(loading , items);
+  // console.log(loading , items);
 
   const billsHandler = () => {
     console.log(items);

@@ -22,7 +22,7 @@ export const getBills=createAsyncThunk('procutss2/getBills',async()=>{
   .then(res => {
     console.log(res.data,'get res');
      const data= res.data
-     debugger;
+   
   })
   .catch(err => console.log(err,'err from get'));
 })

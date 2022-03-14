@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeNavigation from './src/navigation/HomeNavigation';
+import HomeNavigation from './src/component/navigation/HomeNavigation';
 import {Provider} from 'react-redux';
 import {store} from './src/redux-store/store';
 import {NativeBaseProvider} from 'native-base';
