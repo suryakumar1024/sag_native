@@ -20,7 +20,7 @@ const ModalBase = () => {
   });
 
   const addItemHandler = () => {
-    debugger;
+    // debugger;
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
       if (!+productCost) {

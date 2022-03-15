@@ -35,10 +35,14 @@ const productSlice2 = createSlice({
     },
     [getBills.fulfilled](state, {payload}) {
       state.loading = false;
-      // debugger;
-      
-      productAdaptor.setAll( state,payload);
-      console.log('get bill from reducer');
+      debugger;
+     const data = Object.values(payload)
+
+     // get items and list them  when bill page is clicked 
+     // for now always rendering the first bill only
+
+      productAdaptor.setAll( state,data[0]);
+      console.log(payload,'get bill from reducer');
     },
     [getBills.rejected](state) {
       state.loading = false;

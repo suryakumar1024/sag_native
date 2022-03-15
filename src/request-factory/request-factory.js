@@ -14,14 +14,14 @@ export const postBill = createAsyncThunk('products2/postProducts',async(data)=>{
 }) 
 
 export const getBills=createAsyncThunk('procutss2/getBills',async()=>{
-   axios
+ return  axios
   .get(
     'https://cart-f6d03-default-rtdb.asia-southeast1.firebasedatabase.app/bills.json',
-  
+
   )
   .then(res => {
     console.log(res.data,'get res');
-     const data= res.data
+     return res.data
    
   })
   .catch(err => console.log(err,'err from get'));
