@@ -5,22 +5,20 @@ import Product from '../component/Product';
 import {useDispatch, useSelector} from 'react-redux';
 import BottomBar from '../component/BottomBar';
 import ModalBase from '../component/ModalBase';
-import {productSelector} from '../redux-store/ProductSlice2';
-import { getBills } from '../request-factory/request-factory';
+import { productSelector } from '../feature/products';
+import { getBills } from '../action';
 
 const ProductList = props => {
   // const products = useSelector(state => state.product.products);
 
   const prods = useSelector(productSelector.selectAll)
+  const {product} = useSelector((state)=> state.product);
 
 
-
-//   const dispatch=useDispatch()
-// useEffect(()=>{
-//   dispatch(getBills())
-// },[])
-  
-// console.log(prods);
+  const dispatch=useDispatch()
+useEffect(()=>{
+  dispatch(getBills())
+},[])
   return (
     <View style={styles.mainContainer}>
       <StatusBar hidden={true} />
@@ -34,8 +32,7 @@ const ProductList = props => {
        <ModalBase />
        
 
-        {prods.map(item => (
-
+        {prods && prods[0]?.map(item => (
           <Product
             key={item.id}
             id={item.id}

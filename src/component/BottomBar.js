@@ -6,7 +6,7 @@ import AddIcon from './AddIcon';
 import {styles} from './styles/bottomBar-style';
 import {useToast} from 'native-base';
 import {useNavigation} from '@react-navigation/core';
-import {productSelector, removeAll} from '../redux-store/ProductSlice2';
+import {productSelector, removeAll} from '../feature/products';
 import {postBill} from '../request-factory/request-factory';
 
 const BottomBar = props => {

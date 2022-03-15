@@ -3,7 +3,7 @@ import React from 'react';
 import {styles} from './styles/product-style';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useDispatch, useSelector} from 'react-redux';
-import {productSelector, removeOne} from '../redux-store/ProductSlice2';
+import {productSelector, removeOne} from '../feature/products';
 
 const Product = props => {
   const prods = useSelector(productSelector.selectAll);

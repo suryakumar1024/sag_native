@@ -4,8 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from './styles/addIcon-style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
-import {productsActions} from '../redux-store/store';
-import { addOne } from '../redux-store/ProductSlice2';
+import {productsActions} from '../store';
 import { nanoid } from '@reduxjs/toolkit';
 
 const AddIcon = props => {

@@ -3,8 +3,8 @@ import {Button, FormControl, Input, Modal, Toast} from 'native-base';
 import React, {Fragment, useState} from 'react';
 import {Appearance} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addOne} from '../redux-store/ProductSlice2';
-import {productsActions} from '../redux-store/store';
+import {addOne} from '../feature/products'
+import {productsActions} from '../store';
 
 const ModalBase = () => {
   const showModal = useSelector(state => state.product.showModal);
@@ -20,7 +20,6 @@ const ModalBase = () => {
   });
 
   const addItemHandler = () => {
-    debugger;
     if (productName.trim().length !== 0 && productCost.trim().length !== 0) {
       setNameError();
       if (!+productCost) {
