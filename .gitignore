@@ -58,3 +58,13 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+#Other project files 
+__tests__/*
+.prettierrc.js
+.ruby-version
+Gemfile.lock
+.watchmanconfig
+.eslintrc.js
+package-lock.json
+.watchmanconfig
