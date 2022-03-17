@@ -1,8 +1,13 @@
 import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import EmptyTown from '../../component/EmptyTown';
+import { storeData } from '../../utils/LocalStorage';
+
 
 const Home = () => {
+
+  
+
   return (
     <View style={styles.mainContainer}>
       <StatusBar hidden={true} />
@@ -33,11 +38,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B56E6',
   },
   header: {
-    paddingHorizontal:10,
+    paddingHorizontal: 10,
     height: '10%',
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     width: '100%',
     shadowColor: '#000',
     shadowOffset: {
@@ -65,12 +70,10 @@ const styles = StyleSheet.create({
   titleLogo: {
     height: 30,
     width: 80,
-    marginLeft:-30
-
+    marginLeft: -30,
   },
   titleLogoRight: {
     height: 30,
     width: 30,
-
   },
 });
