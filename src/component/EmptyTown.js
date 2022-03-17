@@ -1,20 +1,24 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {storeData} from '../utils/LocalStorage';
-import { Trans, useTranslation } from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
 
 const EmptyTown = () => {
-   const {t,i18n}= useTranslation();
+  const {t, i18n} = useTranslation('common');
 
   const asyncSet = () => {
-     storeData('id', 'stored data');
+    // change language to french (default is english)
+    
+    i18n.changeLanguage('fr');
+
+    //  storeData('id', 'stored data');
   };
   return (
     <View style={styles.emptyContainer}>
       <Text style={[styles.emptyTextHeading, styles.text]}>
         {/* Your Town's Empty */}
-        {/* {t('title')} */}
-        <Trans>title</Trans>
+        {t('title')}
+        {/* <Trans>title</Trans> */}
       </Text>
       <Text style={[styles.text, styles.textDetails]}>
         There are no games on your Town right now.
