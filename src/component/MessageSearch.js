@@ -4,8 +4,8 @@ import IconMci from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {getData} from '../utils/LocalStorage';
+import { styles } from './styles/messageSearch_style';
 
-const windowHeight = Dimensions.get('window').height;
 
 const MessageSearch = () => {
   const showData = async() => {
@@ -16,8 +16,9 @@ const MessageSearch = () => {
   return (
     <View style={styles.header}>
       <Input
-        variant={'filled'}
+        variant={'outline'}
         borderRadius={30}
+        background={'#eee'}
         borderColor={'#9b9b9b'}
         width={'75%'}
         placeholder="Search for townies and club"
@@ -32,16 +33,3 @@ const MessageSearch = () => {
 };
 
 export default MessageSearch;
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    height: windowHeight / 10,
-    // height:Height/10 ,
-
-    borderBottomColor: '#9b9b9b',
-    borderBottomWidth: 1,
-  },
-});

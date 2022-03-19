@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {storeData} from '../utils/LocalStorage';
 import {Trans, useTranslation} from 'react-i18next';
+import { styles } from './styles/emptyTown_style';
 
 const EmptyTown = () => {
   const {t, i18n} = useTranslation('common');
@@ -38,41 +39,4 @@ const EmptyTown = () => {
 
 export default EmptyTown;
 
-const styles = StyleSheet.create({
-  emptyContainer: {
-    position: 'relative',
-    height: '65%',
-    backgroundColor: '#2E46BA',
-    alignItems: 'center',
-  },
-  text: {
-    color: '#fff',
-  },
-  emptyTextHeading: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 30,
-  },
-  textDetails: {
-    marginVertical: 20,
-    fontSize: 17,
-  },
-  logo: {
-    height: '40%',
-    width: '40%',
-  },
-  hostButton: {
-    paddingHorizontal: 40,
-    paddingVertical: 5,
-    borderRadius: 30,
-    backgroundColor: '#213cb7',
-    borderWidth: 2,
-    borderColor: '#3B56E6',
-  },
-  hostButtonText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
+
