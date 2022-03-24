@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Text, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import CarouselItem from "./CarouselItem";
-import CarouselCardItem, { ITEM_WIDTH, SLIDER_WIDTH } from "./CarouselItem";
 // import data from './data'
+const width = Dimensions.get('window').width
 
 const data = [
   {
@@ -36,23 +36,23 @@ const CarouselCards = () => {
   // };
 
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "center",
-        paddingRight: 20,
-      }}
-    >
+    // <View
+    //   style={{
+    //     flexDirection: "row",
+    //     justifyContent: "center",
+       
+    //   }}
+    // >
       <Carousel
         layout={"default"}
         // ref={isCarousel}
         data={data}
-        sliderWidth={300}
-        itemWidth={300}
+        sliderWidth={width-20}
+        itemWidth={width-20}
         renderItem={CarouselItem}
         // onSnapToItem={index=>setActiveIndex(index)}
       />
-    </View>
+    // </View>
   );
 };
 

@@ -12,14 +12,11 @@ const EmptyTown = () => {
     
     i18n.changeLanguage('fr');
 
-    //  storeData('id', 'stored data');
   };
   return (
     <View style={styles.emptyContainer}>
       <Text style={[styles.emptyTextHeading, styles.text]}>
-        {/* Your Town's Empty */}
         {t('title')}
-        {/* <Trans>title</Trans> */}
       </Text>
       <Text style={[styles.text, styles.textDetails]}>
         There are no games on your Town right now.
