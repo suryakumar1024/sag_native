@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "650921885122",
+    "project_id": "pushn-d58cc",
+    "storage_bucket": "pushn-d58cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650921885122:android:6bd9bd09ebc197bbc5ea5b",
+        "android_client_info": {
+          "package_name": "com.demonotify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650921885122-9a28ejqpas7uo3dd2r8agpqjge368tki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqOvTcGi8kjsEnwzW3cfTAnZPXwYQ1GY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650921885122-9a28ejqpas7uo3dd2r8agpqjge368tki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
